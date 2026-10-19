@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Matchup Arena</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: #1e293b; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        h1 { text-align: center; color: #38bdf8; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        p.subtitle { text-align: center; color: #94a3b8; margin-bottom: 30px; }
+        
+        /* Dropdown Control Styling */
+        .selectors-box { display: flex; justify-content: space-around; gap: 20px; background: #0f172a; padding: 20px; border-radius: 8px; margin-bottom: 25px; }
+        .selector-group { display: flex; flex-direction: column; width: 45%; }
+        label { margin-bottom: 8px; font-weight: bold; color: #38bdf8; font-size: 14px; text-transform: uppercase; }
+        select { padding: 12px; background: #1e293b; color: white; border: 1px solid #334155; border-radius: 6px; font-size: 15px; cursor: pointer; outline: none; transition: border 0.3s; }
+        select:focus { border-color: #0284c7; }
+
+        /* Spec Comparison Table */
+        .compare-table { width: 100%; border-collapse: collapse; background: #0f172a; border-radius: 8px; overflow: hidden; margin-top: 10px; }
+        .compare-table th { background-color: #0284c7; color: white; padding: 15px; text-align: center; font-size: 16px; width: 50%; }
+        .compare-table td { padding: 14px; text-align: center; border-bottom: 1px solid #334155; font-size: 15px; }
+        .feature-title { font-weight: bold; background: #1e293b; color: #38bdf8; letter-spacing: 0.5px; }
+
+        /* Advertisement Containers */
+        .ad-space { background: #334155; border: 2px dashed #0284c7; padding: 15px; margin: 20px 0; text-align: center; color: #94a3b8; border-radius: 6px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📱 Phone Matchup Arena</h1>
+        <p class="subtitle">Select any two devices below to compare their native factory specifications.</p>
+
+        <!-- TOP SPONSOR BANNER -->
+        <div class="ad-space">
+            [ADVERTISEMENT SPACE FOR SALE - PLUG YOUR CODE HERE]
+        </div>
+
+        <!-- DUAL DROPDOWN CONTROLS -->
+        <div class="selectors-box">
+            <!-- PHONE AREA 1 -->
+            <div class="selector-group">
+                <label for="brand1">Device 1 Brand</label>
+                <select id="brand1" onchange="updateModels(1)">
+                    <option value="Apple">Apple</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Nokia">Nokia</option>
+                    <option value="Motorola">Motorola</option>
+                    <option value="Xiaomi">Xiaomi</option>
+                    <option value="Honor">Honor</option>
+                    <option value="Oppo">Oppo</option>
+                    <option value="Vivo">Vivo</option>
+                </select>
+                <label style="margin-top:10px;" for="model1">Device 1 Model</label>
+                <select id="model1" onchange="applyComparison()"></select>
+            </div>
+
+            <!-- PHONE AREA 2 -->
+            <div class="selector-group">
+                <label for="brand2">Device 2 Brand</label>
+                <select id="brand2" onchange="updateModels(2)">
+                    <option value="Samsung" selected>Samsung</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Nokia">Nokia</option>
+                    <option value="Motorola">Motorola</option>
+                    <option value="Xiaomi">Xiaomi</option>
+                    <option value="Honor">Honor</option>
+                    <option value="Oppo">Oppo</option>
+                    <option value="Vivo">Vivo</option>
+                </select>
+                <label style="margin-top:10px;" for="model2">Device 2 Model</label>
+                <select id="model2" onchange="applyComparison()"></select>
+            </div>
+        </div>
+
+        <!-- SPECIFICATION GRID DISPLAY -->
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th id="header-phone1">Device 1</th>
+                    <th id="header-phone2">Device 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" class="feature-title">Core Architecture (Chip)</td>
+                </tr>
+                <tr>
+                    <td id="chip1">-</td>
+                    <td id="chip2">-</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="feature-title">Display & Screen Size</td>
+                </tr>
+                <tr>
+                    <td id="screen1">-</td>
+                    <td id="screen2">-</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="feature-title">Available Native Colors</td>
+                </tr>
+                <tr>
+                    <td id="color1">-</td>
+                    <td id="color2">-</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="feature-title">Primary Rear Camera</td>
+                </tr>
+                <tr>
+                    <td id="cam1">-</td>
+                    <td id="cam2">-</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="feature-title">Front Selfie Camera</td>
+                </tr>
+                <tr>
+                    <td id="frontcam1">-</td>
+                    <td id="frontcam2">-</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="feature-title">Battery Capacity & Charging</td>
+                </tr>
+                <tr>
+                    <td id="battery1">-</td>
+                    <td id="battery2">-</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="feature-title">Waterproofness (IP Rating)</td>
+                </tr>
+                <tr>
+                    <td id="water1">-</td>
+                    <td id="water2">-</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="feature-title">Connectivity Support</td>
+                </tr>
+                <tr>
+                    <td id="connect1">-</td>
+                    <td id="connect2">-</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- BOTTOM CONTEXT BANNER -->
+        <div class="ad-space">
+            Support the arena! Visit our automated affiliate links to upgrade your gear.
+        </div>
+    </div>
+
+    <!-- CLIENT LOGIC DRIVE DATA -->
+    <script>
+        // Expanded hardware datasets with new spec points requested
+        const phoneDatabase = {
+            Apple: {
+                "iPhone 16 Pro Max": { chip: "A18 Pro Silicon", screen: "6.9 inches OLED", color: "Black, White, Silver, Desert Titanium", cam: "48 MP Main + 48 MP Ultra-Wide", frontcam: "12 MP (f/1.9) TrueDepth", battery: "4,685 mAh (30W Wired)", water: "IP68 (Up to 6m for 30 mins)", connect: "5G, Wi-Fi 7, Bluetooth 5.3" },
+                "iPhone 15 Pro Max": { chip: "A17 Pro Silicon", screen: "6.7 inches OLED", color: "Black, White, Blue, Natural Titanium", cam: "48 MP Main + 12 MP Telephoto", frontcam: "12 MP (f/1.9) TrueDepth", battery: "4,441 mAh (25W Wired)", water: "IP68 (Up to 6m for 30 mins)", connect: "5G, Wi-Fi 6E, Bluetooth 5.3" },
+                "iPhone 11 Pro": { chip: "A13 Bionic", screen: "5.8 inches OLED", color: "Space Gray, Silver, Gold, Midnight Green", cam: "12 MP Triple Sensor Matrix", frontcam: "12 MP (f/2.2) TrueDepth", battery: "3,046 mAh (18W Fast Charge)", water: "IP68 (Up to 4m for 30 mins)", connect: "4G LTE, Wi-Fi 6, Bluetooth 5.0" },
+                "iPhone X": { chip: "A11 Bionic", screen: "5.8 inches Super Retina", color: "Space Gray, Silver", cam: "12 MP Dual Camera", frontcam: "7 MP (f/2.2) TrueDepth", battery: "2,716 mAh (15W Fast Charge)", water: "IP67 (Up to 1m for 30 mins)", connect: "4G LTE, Wi-Fi 5, Bluetooth 5.0" }
+            },
+            Samsung: {
+                "Galaxy S26 Ultra": { chip: "Snapdragon 8 Elite Gen 5", screen: "6.8 inches Dynamic AMOLED", color: "Titanium Black, Silver, Navy", cam: "200 MP Ultra Quad-Lens", frontcam: "12 MP Dual Pixel AutoFocus", battery: "5,000 mAh (45W Wired)", water: "IP68 (Up to 1.5m for 30 mins)", connect: "5G, Wi-Fi 7, Bluetooth 5.4" },
+                "Galaxy S24 Ultra": { chip: "Snapdragon 8 Gen 3", screen: "6.8 inches flat AMOLED", color: "Titanium Gray, Yellow, Violet", cam: "200 MP Quad Setup", frontcam: "12 MP Dual Pixel AutoFocus", battery: "5,000 mAh (45W Wired)", water: "IP68 (Up to 1.5m for 30 mins)", connect: "5G, Wi-Fi 7, Bluetooth 5.3" },
+                "Galaxy S20 Ultra": { chip: "Exynos 990 / Snapdragon 865", screen: "6.9 inches AMOLED 120Hz", color: "Cosmic Grey, Cosmic Black", cam: "108 MP Quad Setup", frontcam: "40 MP Pro Selfie Sensor", battery: "5,000 mAh (45W Wired)", water: "IP68 (Up to 1.5m for 30 mins)", connect: "5G, Wi-Fi 6, Bluetooth 5.0" },
+                "Galaxy S7 Edge": { chip: "Snapdragon 820 / Exynos 8890", screen: "5.5 inches Curved display", color: "Black Onyx, Gold Platinum, Silver", cam: "12 MP Dual Pixel", frontcam: "5 MP (f/1.7) Wide-Angle", battery: "3,600 mAh (15W Wired)", water: "IP68 (Up to 1.5m for 30 mins)", connect: "4G LTE, Wi-Fi 5, Bluetooth 4.2" }
+            },
+            Nokia: {
