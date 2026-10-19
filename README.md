@@ -1,2 +1,2 @@
-# Kenitgadhesaria.github.io
-Money Machine
+# Comphone.github.io
+Compare phones, even if they are rivals
