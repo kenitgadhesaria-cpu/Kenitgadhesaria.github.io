@@ -226,17 +226,18 @@ document.getElementById(f + '1').innerText = d1 ? d1[f] : "-";
 document.getElementById(f + '2').innerText = d2 ? d2[f] : "-";
 });
 }
-window.onload = function() {
-updateModels(1);
-updateModels(2);
-};
+       // Automated system loader to populate options instantly on start
+        function initializeArena() {
+            updateModels(1);
+            updateModels(2);
+        }
 
-
-
-### What this update achieves:
-1. **Historical Timeline:** It sets up historical timelines from 2015 to 2026 for each brand, charting transitions from 4G LTE to 5G, micro-capacities to massive standard silicon-carbon cells, and early pop-up camera components to modern layouts.
-2. **Fixed Initialize Framework:** The code handles dropdown actions smoothly. Saving this will instantly eliminate the "No Options" bug on your layout.
-
-<FollowUp>
-Commit this code layout to your project file and open your URL. Let me know when the full list loads and your dropdown selectors begin populating specifications across your table!
-</FollowUp>
+        // Trigger loading across all mobile, tablet and desktop browsers
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initializeArena);
+        } else {
+            initializeArena();
+        }
+    </script>
+</body>
+</html>
